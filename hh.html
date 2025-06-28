@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infographic: Transforming Bangladesh's E-Rickshaw Sector</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .kpi-card {
+            background-color: white;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-left: 8px solid;
+        }
+        .kpi-value {
+            font-size: 3rem;
+            font-weight: 900;
+            line-height: 1;
+        }
+        .kpi-unit {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-left: 0.5rem;
+        }
+        .kpi-label {
+            margin-top: 0.5rem;
+            font-size: 1rem;
+            color: #4A5568;
+            line-height: 1.4;
+        }
+        .flow-arrow {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #94d2bd;
+            align-self: center;
+            margin: 0 1rem;
+        }
+        .flow-arrow-down {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #94d2bd;
+            text-align: center;
+            margin: 0.5rem 0;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background-color: #94d2bd;
+            border-radius: 2px;
+        }
+        .timeline-item {
+            position: relative;
+            width: 50%;
+            padding: 2rem 2.5rem;
+        }
+        .timeline-item:nth-child(odd) {
+            left: 0;
+            padding-right: 4rem;
+            text-align: right;
+        }
+        .timeline-item:nth-child(even) {
+            left: 50%;
+            padding-left: 4rem;
+            text-align: left;
+        }
+        .timeline-dot {
+            content: '';
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 24px;
+            height: 24px;
+            background-color: white;
+            border: 5px solid #0a9396;
+            border-radius: 50%;
+            z-index: 10;
+        }
+        .timeline-item:nth-child(odd) .timeline-dot {
+            right: -12px;
+        }
+        .timeline-item:nth-child(even) .timeline-dot {
+            left: -12px;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <header class="bg-[#005f73] text-white text-center py-12 px-4">
+        <h1 class="text-4xl md:text-5xl font-black mb-2">The E-Rickshaw Paradox</h1>
+        <p class="text-xl md:text-2xl font-light max-w-4xl mx-auto">Fueling Livelihoods, Straining a Nation: A Sustainable Path Forward for Bangladesh</p>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        
+        <section id="intro" class="mb-20 text-center">
+            <h2 class="text-3xl font-bold text-[#005f73] mb-4">A Silent Revolution with a Hidden Cost</h2>
+            <p class="max-w-3xl mx-auto text-lg text-gray-600 mb-12">
+                Emerging from grassroots innovation, the e-rickshaw has become an indispensable part of Bangladesh's economy, providing essential mobility and employment. However, this unregulated growth has created two interconnected national crises that demand an urgent and systemic solution.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <div class="kpi-card border-[#0a9396]">
+                    <div>
+                        <span class="kpi-value">~3</span><span class="kpi-unit">Million</span>
+                    </div>
+                    <p class="kpi-label">E-Rickshaws on the road, forming the backbone of informal transport.</p>
+                </div>
+                <div class="kpi-card border-[#ee9b00]">
+                    <div>
+                        <span class="kpi-value">3+</span><span class="kpi-unit">Million</span>
+                    </div>
+                    <p class="kpi-label">Jobs created, providing a critical economic lifeline for families nationwide.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="crisis" class="mb-20">
+            <h2 class="text-3xl font-bold text-center text-[#bb3e03] mb-12">The Dual Crises: Grid Strain & A Toxic Epidemic</h2>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="bg-white rounded-lg shadow-xl p-6">
+                    <h3 class="text-2xl font-bold text-center text-[#ca6702] mb-4">1. The Power Grid Under Siege</h3>
+                    <p class="text-gray-600 mb-6 text-center">The daily charging of millions of e-rickshaws, mostly through illegal connections, places an unsustainable load on the national power grid, equivalent to the entire output of a major power plant.</p>
+                    <div class="chart-container mx-auto">
+                        <canvas id="powerGridChart"></canvas>
+                    </div>
+                    <p class="text-center text-sm text-gray-500 mt-4">This uncontrolled demand distorts the national load curve, degrades critical infrastructure like transformers, and worsens nationwide load-shedding.</p>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-xl p-6">
+                    <h3 class="text-2xl font-bold text-center text-[#ae2012] mb-4">2. The Silent Epidemic of Lead Poisoning</h3>
+                    <p class="text-gray-600 mb-6 text-center">The sector's reliance on cheap, short-lived lead-acid batteries fuels a hazardous informal recycling industry, unleashing a public health and environmental catastrophe.</p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div class="chart-container !h-64 sm:!h-56">
+                            <canvas id="leadVictimsChart"></canvas>
+                            <p class="text-center text-sm font-semibold text-gray-700 mt-2">Children with Elevated Blood Lead Levels</p>
+                        </div>
+                         <div class="chart-container !h-64 sm:!h-56">
+                            <canvas id="informalRecyclingChart"></canvas>
+                            <p class="text-center text-sm font-semibold text-gray-700 mt-2">Used Batteries Channeled to Informal Recycling</p>
+                        </div>
+                    </div>
+                     <div class="kpi-card border-[#9b2226] mt-6 !p-4">
+                        <div>
+                            <span class="kpi-value !text-4xl">$16</span><span class="kpi-unit !text-xl">Billion</span>
+                        </div>
+                        <p class="kpi-label !text-base">Annual GDP loss from diminished lifetime earning potential of poisoned youth.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-16 bg-white rounded-lg shadow-xl p-6">
+                <h3 class="text-2xl font-bold text-center text-[#bb3e03] mb-6">The Toxic Lifecycle of a Lead-Acid Battery</h3>
+                <div class="flex flex-col md:flex-row justify-around items-center space-y-4 md:space-y-0 md:space-x-4">
+                    <div class="text-center p-4 bg-gray-50 rounded-lg">
+                        <div class="text-4xl mb-2">🔋</div>
+                        <h4 class="font-bold">Short Use Life</h4>
+                        <p class="text-sm">Lasts only 8-11 months, creating massive waste.</p>
+                    </div>
+                    <div class="flow-arrow hidden md:block">&rarr;</div>
+                    <div class="flow-arrow-down md:hidden">&darr;</div>
+                     <div class="text-center p-4 bg-gray-50 rounded-lg">
+                        <div class="text-4xl mb-2">🗑️</div>
+                        <h4 class="font-bold">Informal Disposal</h4>
+                        <p class="text-sm">70-90% enter the unregulated waste stream.</p>
+                    </div>
+                     <div class="flow-arrow hidden md:block">&rarr;</div>
+                    <div class="flow-arrow-down md:hidden">&darr;</div>
+                     <div class="text-center p-4 bg-red-50 rounded-lg">
+                        <div class="text-4xl mb-2">🔥</div>
+                        <h4 class="font-bold text-red-700">Crude Smelting</h4>
+                        <p class="text-sm">Open-air furnaces release toxic lead fumes.</p>
+                    </div>
+                     <div class="flow-arrow hidden md:block">&rarr;</div>
+                    <div class="flow-arrow-down md:hidden">&darr;</div>
+                     <div class="text-center p-4 bg-red-50 rounded-lg">
+                        <div class="text-4xl mb-2">☠️</div>
+                        <h4 class="font-bold text-red-700">Widespread Pollution</h4>
+                        <p class="text-sm">Lead contaminates air, soil, and water supplies.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="solution" class="mb-20 bg-[#e9d8a6] bg-opacity-30 rounded-lg p-6 md:p-12">
+             <h2 class="text-3xl font-bold text-center text-[#005f73] mb-12">The Solution: A Sustainable Ecosystem</h2>
+             <p class="max-w-3xl mx-auto text-lg text-gray-600 mb-12 text-center">
+                A systemic transformation is required, built on three pillars: superior technology, innovative infrastructure, and a driver-centric business model.
+            </p>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+                <div class="bg-white rounded-lg shadow-xl p-6">
+                    <h3 class="text-2xl font-bold text-center text-[#0a9396] mb-4">Pillar 1: Technology Shift</h4>
+                    <p class="text-gray-600 mb-6 text-center">Replacing toxic Lead-Acid Batteries (LAB) with modern, long-lasting Lithium-ion (Li-ion) batteries.</p>
+                    <div class="chart-container mx-auto">
+                        <canvas id="batteryTechChart"></canvas>
+                    </div>
+                    <p class="text-center text-sm text-gray-500 mt-4">Li-ion batteries offer vastly superior lifespan, energy density, and efficiency, while eliminating the lead toxicity crisis at its source.</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-xl p-6">
+                    <h3 class="text-2xl font-bold text-center text-[#0a9396] mb-4">Pillar 2 & 3: New Infrastructure & Business Model</h4>
+                    <p class="text-gray-600 mb-6 text-center">Introducing Solar-Powered Battery Swapping Stations (SP-BSS) with a Battery-as-a-Service (BaaS) model.</p>
+                    <div class="kpi-card border-[#0a9396] !p-4">
+                        <div>
+                            <span class="kpi-value !text-4xl">&lt;5</span><span class="kpi-unit !text-xl">Mins</span>
+                        </div>
+                        <p class="kpi-label !text-base">Battery Swap Time</p>
+                    </div>
+                    <p class="text-center font-bold my-2">vs. 8-10 Hours Charging Time</p>
+                    <p class="text-gray-600 mt-4 text-center">Drivers swap depleted batteries for fully charged ones in minutes, eliminating unproductive downtime and increasing daily income.</p>
+                </div>
+            </div>
+
+            <div class="mt-16 bg-white rounded-lg shadow-xl p-6">
+                <h3 class="text-2xl font-bold text-center text-[#005f73] mb-6">The Virtuous Cycle of Solar Battery Swapping</h3>
+                 <div class="flex flex-col md:flex-row justify-around items-center space-y-4 md:space-y-0 md:space-x-2">
+                    <div class="text-center p-3 bg-gray-50 rounded-lg">
+                        <div class="text-4xl mb-2">☀️</div>
+                        <h4 class="font-bold">Solar Power</h4>
+                        <p class="text-sm">Stations generate clean energy, decoupling from the grid.</p>
+                    </div>
+                    <div class="flow-arrow hidden md:block">&rarr;</div>
+                    <div class="flow-arrow-down md:hidden">&darr;</div>
+                     <div class="text-center p-3 bg-gray-50 rounded-lg">
+                        <div class="text-4xl mb-2">🏢</div>
+                        <h4 class="font-bold">Swapping Station</h4>
+                        <p class="text-sm">Manages and charges a pool of Li-ion batteries.</p>
+                    </div>
+                     <div class="flow-arrow hidden md:block">&rarr;</div>
+                    <div class="flow-arrow-down md:hidden">&darr;</div>
+                     <div class="text-center p-3 bg-gray-50 rounded-lg">
+                        <div class="text-4xl mb-2">🔄</div>
+                        <h4 class="font-bold">Instant Swap</h4>
+                        <p class="text-sm">Driver gets a full battery in under 5 minutes.</p>
+                    </div>
+                     <div class="flow-arrow hidden md:block">&rarr;</div>
+                    <div class="flow-arrow-down md:hidden">&darr;</div>
+                    <div class="text-center p-3 bg-gray-50 rounded-lg">
+                        <div class="text-4xl mb-2">🛺</div>
+                        <h4 class="font-bold">Higher Income</h4>
+                        <p class="text-sm">More time on the road means more earnings for the driver.</p>
+                    </div>
+                    <div class="flow-arrow hidden md:block">&rarr;</div>
+                    <div class="flow-arrow-down md:hidden">&darr;</div>
+                    <div class="text-center p-3 bg-gray-50 rounded-lg">
+                        <div class="text-4xl mb-2">♻️</div>
+                        <h4 class="font-bold">Formal Recycling</h4>
+                        <p class="text-sm">BaaS ensures proper end-of-life battery management.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="benefits" class="mb-20">
+            <h2 class="text-3xl font-bold text-center text-[#005f73] mb-12">Unlocking Transformative Benefits</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                 <div class="kpi-card border-[#0a9396]">
+                    <div class="text-5xl mb-3">📈</div>
+                    <h3 class="text-2xl font-bold mb-2">Economic Windfall</h3>
+                    <p class="kpi-label">Driver income increases by up to 60%. A multi-billion Taka industry is formalized, boosting tax revenue. The $16B GDP loss from lead poisoning is reclaimed.</p>
+                </div>
+                <div class="kpi-card border-[#94d2bd]">
+                    <div class="text-5xl mb-3">🌿</div>
+                    <h3 class="text-2xl font-bold mb-2">Environmental Restoration</h3>
+                    <p class="kpi-label">Ends the lead pollution crisis at its source. Reduces GHG emissions by shifting to solar. Establishes a formal, circular economy for batteries.</p>
+                </div>
+                 <div class="kpi-card border-[#e9d8a6]">
+                    <div class="text-5xl mb-3">⚡️</div>
+                    <h3 class="text-2xl font-bold mb-2">Energy Security</h3>
+                    <p class="kpi-label">Alleviates the grid of a ~500 MW unmanaged load. Stations act as grid-stabilizing assets, providing storage and peak shaving services to enhance national energy resilience.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="roadmap" class="mb-20">
+            <h2 class="text-3xl font-bold text-center text-[#005f73] mb-16">A 10-Year Roadmap to Transformation</h2>
+            <div class="relative">
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="bg-white p-6 rounded-lg shadow-lg">
+                            <h3 class="text-xl font-bold text-[#0a9396]">Phase 1: Pilot & Standardization</h3>
+                            <p class="font-semibold text-gray-500">Years 1-2</p>
+                            <ul class="list-disc list-inside mt-2 text-gray-600">
+                                <li>Deploy pilot Solar BSS projects.</li>
+                                <li>Develop national battery standards.</li>
+                                <li>Validate techno-economic model.</li>
+                            </ul>
+                        </div>
+                    </div>
+                     <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="bg-white p-6 rounded-lg shadow-lg">
+                             <h3 class="text-xl font-bold text-[#0a9396]">Phase 2: Scaled Rollout</h3>
+                            <p class="font-semibold text-gray-500">Years 3-5</p>
+                             <ul class="list-disc list-inside mt-2 text-gray-600">
+                                <li>Expand BSS network in major cities.</li>
+                                <li>Launch mandatory registration system.</li>
+                                <li>Begin "scrap-and-replace" incentives.</li>
+                            </ul>
+                        </div>
+                    </div>
+                     <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="bg-white p-6 rounded-lg shadow-lg">
+                             <h3 class="text-xl font-bold text-[#0a9396]">Phase 3: Full Integration</h3>
+                            <p class="font-semibold text-gray-500">Years 6-10</p>
+                             <ul class="list-disc list-inside mt-2 text-gray-600">
+                                <li>Achieve nationwide BSS coverage.</li>
+                                <li>Phase out all legacy LAB vehicles.</li>
+                                <li>Establish full circular economy for Li-ion.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+    
+   
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            
+            const brilliantBluesPalette = {
+                darkTeal: '#005f73',
+                mediumTeal: '#0a9396',
+                lightTeal: '#94d2bd',
+                paleGold: '#e9d8a6',
+                gold: '#ee9b00',
+                burntOrange: '#ca6702',
+                darkOrange: '#bb3e03',
+                red: '#ae2012',
+                darkRed: '#9b2226',
+                lightGray: '#f0f4f8',
+                gray: '#4A5568',
+            };
+
+            const globalTooltipConfig = {
+                callbacks: {
+                    title: function(tooltipItems) {
+                        const item = tooltipItems[0];
+                        let label = item.chart.data.labels[item.dataIndex];
+                        if (Array.isArray(label)) {
+                            return label.join(' ');
+                        } else {
+                            return label;
+                        }
+                    }
+                }
+            };
+            
+            const wrapLabel = (str, maxWidth) => {
+                if (str.length <= maxWidth) {
+                    return str;
+                }
+                const words = str.split(' ');
+                const lines = [];
+                let currentLine = '';
+                words.forEach(word => {
+                    if ((currentLine + ' ' + word).trim().length > maxWidth && currentLine.length > 0) {
+                        lines.push(currentLine);
+                        currentLine = word;
+                    } else {
+                        currentLine = (currentLine + ' ' + word).trim();
+                    }
+                });
+                if (currentLine.length > 0) {
+                    lines.push(currentLine);
+                }
+                return lines;
+            };
+
+            const powerGridCtx = document.getElementById('powerGridChart').getContext('2d');
+            new Chart(powerGridCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['E-Rickshaw Uncontrolled Load'],
+                    datasets: [{
+                        label: 'Daily Power Demand (MW)',
+                        data: [500],
+                        backgroundColor: [brilliantBluesPalette.burntOrange],
+                        borderColor: [brilliantBluesPalette.darkOrange],
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        title: {
+                            display: true,
+                            text: 'A National-Scale Power Demand',
+                            font: { size: 16 }
+                        },
+                        tooltip: globalTooltipConfig
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Megawatts (MW)'
+                            }
+                        }
+                    }
+                }
+            });
+
+            const leadVictimsCtx = document.getElementById('leadVictimsChart').getContext('2d');
+            new Chart(leadVictimsCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Children Affected', 'Unaffected'],
+                    datasets: [{
+                        label: '% of Children',
+                        data: [60, 40],
+                        backgroundColor: [brilliantBluesPalette.red, brilliantBluesPalette.lightGray],
+                        borderColor: [brilliantBluesPalette.darkRed, '#cccccc'],
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'bottom' },
+                        title: {
+                            display: false,
+                        },
+                        tooltip: globalTooltipConfig
+                    },
+                    cutout: '60%'
+                }
+            });
+            
+            const informalRecyclingCtx = document.getElementById('informalRecyclingChart').getContext('2d');
+            new Chart(informalRecyclingCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Informal Sector', 'Formal Sector'],
+                    datasets: [{
+                        label: 'Recycling Path',
+                        data: [80, 20], // Using an average of 70-90%
+                        backgroundColor: [brilliantBluesPalette.burntOrange, brilliantBluesPalette.lightGray],
+                        borderColor: [brilliantBluesPalette.darkOrange, '#cccccc'],
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'bottom' },
+                        title: {
+                            display: false,
+                        },
+                        tooltip: globalTooltipConfig
+                    },
+                    cutout: '60%'
+                }
+            });
+
+            const batteryTechCtx = document.getElementById('batteryTechChart').getContext('2d');
+            const batteryLabels = ['Typical Lifespan (Months)', wrapLabel('Energy Density (Wh/kg)', 16)];
+            new Chart(batteryTechCtx, {
+                type: 'bar',
+                data: {
+                    labels: batteryLabels,
+                    datasets: [{
+                        label: 'Lead-Acid Battery',
+                        data: [10, 40], // Avg values
+                        backgroundColor: brilliantBluesPalette.burntOrange,
+                        borderColor: brilliantBluesPalette.darkOrange,
+                        borderWidth: 2
+                    }, {
+                        label: 'Lithium-ion (LFP)',
+                        data: [60, 125], // Avg values for 5+ years and density
+                        backgroundColor: brilliantBluesPalette.mediumTeal,
+                        borderColor: brilliantBluesPalette.darkTeal,
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'top' },
+                        title: {
+                            display: true,
+                            text: 'Lead-Acid vs. Lithium-ion Performance',
+                            font: { size: 16 }
+                        },
+                        tooltip: globalTooltipConfig
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+
+        });
+    </script>
+    
+</body>
+</html>
